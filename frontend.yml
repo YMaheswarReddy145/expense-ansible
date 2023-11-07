@@ -1,0 +1,26 @@
+- name: Expense Frontend Setup
+  hosts: all
+  become: yes      # to provide the sudo privilege we use become: yes
+  tasks:
+    - name: Installing nginx
+      ansible.builtin.dnf:
+        name: nginx
+        state: present
+    - name: Copy Expense Configuration
+      ansible.builtin.copy:
+        src: expense.conf
+        dest: /etc/nginx/default.d/expense.conf
+    - name: Clean old nginx Dir
+      ansible.builtin.file:
+        path: /usr/share/nginx/html
+        state: directory
+    - name: Download and Extract Frontend Content
+      ansible.builtin.unarchive:
+        src: https://expense-artifacts.s3.amazonaws.com/frontend.zip
+        dest: /usr/share/nginx/html
+        remote_src: yes
+    - name: Starting nginx Service
+      ansible.builtin.systemd:
+        name: nginx
+        state: restarted
+        enabled: yes
