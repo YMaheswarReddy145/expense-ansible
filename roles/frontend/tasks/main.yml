@@ -12,9 +12,9 @@
   ansible.builtin.import_role:
     name: common
     tasks_from: app-prereq
-    vars:
-      app_dir: /usr/share/nginx/html
-      component: frontend
+  vars:
+    app_dir: /usr/share/nginx/html
+    component: frontend
 
 - name: Starting nginx Service
   ansible.builtin.systemd:
