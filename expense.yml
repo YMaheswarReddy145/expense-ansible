@@ -1,0 +1,5 @@
+- name: Expense Backend Setup
+  hosts: all
+  become: yes      # to provide the sudo privilege we use become: yes
+  roles:
+    - "{{ role_name }}"
