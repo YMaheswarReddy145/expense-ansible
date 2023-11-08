@@ -3,7 +3,7 @@ Description = Backend Service
 
 [Service]
 User=expense
-Environment=DB_HOST="mysql-dev.maheswary.online"
+Environment=DB_HOST="mysql-{{env}}.maheswary.online"
 ExecStart=/bin/node /app/index.js
 SyslogIdentifier=backend
 
