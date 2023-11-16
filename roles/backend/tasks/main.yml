@@ -50,3 +50,8 @@
     state: restarted
     enabled: yes
     daemon_reload: yes
+
+- name: Import ELX Role - Filebeat
+  ansible.builtin.import_role:
+    name: elk
+    tasks_from: filebeat
