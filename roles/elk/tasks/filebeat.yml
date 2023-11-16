@@ -7,7 +7,7 @@
 - name: Restart rsyslog service
   ansible.builtin.systemd:
     name: rsyslog
-    status: restarted
+    state: restarted
   when: is_rsyslog_needed
 
 - name: Copy Elastic YUM Repo File
