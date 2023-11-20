@@ -29,9 +29,23 @@ scrape_configs:
       - targets: ["localhost:9090"]
 
   - job_name: ec2-nodes
+# we re adding these relabel configs to show the below labels data on the prometheus.
+    relabel_configs:
+      - source_labels: [__meta_ec2_instance_id]
+        target_label: instance_id
+      - source_labels: [__meta_ec2_private_ip]
+        target_label: private_ip
+      - source_labels: [__meta_ec2_tag_name]
+        target_label: name
+
+# Here we provide the region as north virgina and the port number of the ec2 instances should have 9100 which is a
+    # port number of node exporter
     ec2_sd_configs:
       - region: us-east-1
         port: 9100
+# we are proving the filter because if we don't add these it will show all the instances present in ec2, if we add the
+  # filter it will show only the instance which has tag name as Monitor, we can provide the tg in ec2 .
+
         filters:
           - name: "tag:Monitor"
             values: ["true"]
