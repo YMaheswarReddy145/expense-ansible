@@ -22,4 +22,4 @@
     state: present
     commit_message: Updated by ansible
     overwrite: yes
-    path: /tmp/dashboard.json
+    path: /tmp/dashboard.jason
