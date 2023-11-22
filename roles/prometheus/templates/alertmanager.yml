@@ -3,17 +3,22 @@ route:
   group_wait: 30s
   group_interval: 5m
   repeat_interval: 1h
-  receiver: 'SNS'
+  receiver: 'Email'
 receivers:
-  - name: SNS
-    sns_configs:
-    - sigv4:
-        region: us-east-1
-      topic_arn: arn:aws:sns:us-east-1:791254643297:email1
-      subject: prometheus alert
+  - name: email
+    email_configs:
+      - to: yettapumhesh398@gmail.com
+        from: yettapumhesh398@gmail.com"
+        smarthost: "email-smtp.us-east-1.amazonaws.com:587"
+        auth_username: "{{ lookup('amazon.aws.aws_ssm', 'ses.username', region='us-east-1' ) }}"
+        auth_password: "{{ lookup('amazon.aws.aws_ssm', 'ses.username', region='us-east-1' ) }}"
+        require_tls: true
 inhibit_rules:
   - source_match:
       severity: 'critical'
     target_match:
       severity: 'warning'
     equal: ['alertname', 'dev', 'instance']
+
+# user name: AKIA3QOTTWJQWBVTYJON
+# Password: BDsyJUFYVmpAVGg8GokPo7OkGb5hueNNrgLCL/Cdhh0z
