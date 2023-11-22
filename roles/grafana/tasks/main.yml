@@ -18,7 +18,7 @@
 # Here grafana.pi_key was created in aws parameter store and we have taken the token from grafana --> service account -->
     #  name: ansible role: admin and select create --> now select add service account token and provide display name as
     # ansible and select the generate token and now copy the token and provide it in aws parameter store in value.
-    grafana_api_key: "{{ lookup('amazon.aws.aws_ssm', 'grafana.api_key', region='us-east-1' ) }}"; }
+    grafana_api_key: "{{ lookup('amazon.aws.aws_ssm', 'grafana.api_key', region='us-east-1' ) }}"
     state: present
     commit_message: Updated by ansible
     overwrite: yes
