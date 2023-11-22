@@ -13,7 +13,7 @@
   community.grafana.grafana_dashboard:
 
 # In grafana url we are providing the prometheus private ip address with port number as 3000
-    grafana_url: http:172.31.41.66:3000
+    grafana_url: http://172.31.41.66:3000
 
 # Here grafana.pi_key was created in aws parameter store and we have taken the token from grafana --> service account -->
     #  name: ansible role: admin and select create --> now select add service account token and provide display name as
