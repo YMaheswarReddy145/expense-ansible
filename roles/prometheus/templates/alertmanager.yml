@@ -19,9 +19,3 @@ inhibit_rules:
     target_match:
       severity: 'warning'
     equal: ['alertname', 'dev', 'instance']
-
-# user name: AKIA3QOTTWJQWBVTYJON
-# Password: BDsyJUFYVmpAVGg8GokPo7OkGb5hueNNrgLCL/Cdhh0z
-
-# user name: AKIA3QOTTWJQW7HQVYPM
-# Password: BLTfv9s/+nZPXEEGgPN6gqH3j0lLPUkwGUpuT7rtwif8
