@@ -27,7 +27,11 @@
     name: elk
     tasks_from: filebeat
 
-- name: Import ELX Prometheus - Node Exporter
+- name: Import Prometheus - Node Exporter
   ansible.builtin.import_role:
     name: prometheus
     tasks_from: node-exporter
+
+- name: Import Grafana - Dashboard Creation
+  ansible.builtin.import_role:
+    name: grafana

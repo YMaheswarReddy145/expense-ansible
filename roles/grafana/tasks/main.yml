@@ -1,0 +1,25 @@
+# we rae creating a file to store the jason code with we have taken from grafana in the below destination path.
+- name: Create a Dashboard File
+  ansible.builtin.template:
+    src: dashboard.jason
+# in dashboard.jason file we have to add these things {% raw %} --up   {% endraw %} --down  near {{ name)) & {[ instance}}
+    # and also update the title from "NEW Dashboard" to "frontend" but in the future it will become problems if we are
+    # running multiple servers some to over come these we will update in place of frontend to {{component}} and -dev with
+    # {env}} to run automatically in the future
+    dest: /tmp/dashboard.jason
+
+# With the help of these we are adding a dashboard in grafana after prometheus with ansible
+- name: Add Grafana dashboard
+  community.grafana.grafana_dashboard:
+
+# In grafana url we are providing the prometheus private ip address with port number as 3000
+    grafana_url: http:172.31.41.66:3000
+
+# Here grafana.pi_key was created in aws parameter store and we have taken the token from grafana --> service account -->
+    #  name: ansible role: admin and select create --> now select add service account token and provide display name as
+    # ansible and select the generate token and now copy the token and provide it in aws parameter store in value.
+    grafana_api_key: "{{ lookup('amazon.aws.aws_ssm', 'grafana.api_key', region='us-east-1' ) }}"; }
+    state: present
+    commit_message: Updated by ansible
+    overwrite: yes
+    path: /tmp/dashboard.json
