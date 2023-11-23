@@ -15,13 +15,13 @@
 #    enabled: yes
 # Instead of restarting tte server everytime we just reload it
 
-- name: List ll files in Bucket
+- name: List All files in Bucket
   amazon.aws.s3_object:
     bucket: dev-prometheus-alert-rules
     mode: list
   register: out
 
-- name: Download all the objects from s3 Bucket Having Alert Files
+- name: Download all the Objects from s3 Bucket Having Alert Files
   amazon.aws.s3_object:
     bucket: dev-prometheus-alert-rules
     mode: get
