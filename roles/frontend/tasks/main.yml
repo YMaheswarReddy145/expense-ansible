@@ -42,6 +42,9 @@
     dest: /tmp/{{component}}-{{env}}.yml
 
 - name: Upload Alert file to S3
-  community.aws.s3_sync:
+  amazon.aws.s3_object:
     bucket: dev-prometheus-alert-rules
-    file_root: /tmp/{{component}}-{{env}}.yml
+    object: {{component}}-{{env}}
+    src: tmp/{{component}}-{{env}}.yml
+  #  file_root: /tmp/{{component}}-{{env}}.yml --> we use file_root if we are using s3_sync but now we are using
+   #s3_object  so file_root is not needed. if we use sync then we remove object and src.

@@ -15,9 +15,22 @@
 #    enabled: yes
 # Instead of restarting tte server everytime we just reload it
 
+- name: List ll files in Bucket
+  amazon.aws.s3_object:
+    bucket: dev-prometheus-alert-rules
+    mode: list
+  register: out
+
+- name: Download all the objects from s3 Bucket Having Alert Files
+  amazon.aws.s3_object:
+    bucket: dev-prometheus-alert-rules
+    mode: get
+    object: "{{item}}"
+    dest: /opt/prometheus/alert-rules/{{item}}
+  loop: "{{out.s3.keys}}"
+
 - name: Reload the prometheus Server
   ansible.builtin.shell: kill -1 $(ps -ef | grep /opt/prometheus/prometheus | grep -v grep | awk '{print $2}')
-
 
 - name: Copy AlertManager Config
   ansible.builtin.template:
