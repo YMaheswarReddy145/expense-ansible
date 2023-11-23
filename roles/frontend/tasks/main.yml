@@ -42,6 +42,6 @@
     dest: /tmp/alert-rules.yml
 
 - name: Upload Alert file to S3
-  community.qws.s3.sync:
+  community.aws.s3_sync:
     bucket: dev-prometheus-alert-rules
     file_root: /tmp/alert-rules.yml
