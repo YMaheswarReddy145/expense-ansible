@@ -41,5 +41,14 @@ groups:
       annotations:
         summary: Warning | Memory Usage Alert
 
+    - alert: Dummy
+      expr: up < 1
+      for: 1m
+      labels:
+        severity: critical
+        component: {{component}}
+        env: {{env}}
+      annotations:
+        summary: Critical | Dummy
 
 ###
