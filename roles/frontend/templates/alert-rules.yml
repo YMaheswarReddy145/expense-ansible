@@ -41,14 +41,14 @@ groups:
       annotations:
         summary: Warning | Memory Usage Alert
 
-    - alert: Dummy
-      expr: up < 1
-      for: 1m
+    - alert: NetworkBWMonitorWaitQueue
+      expr: rate(node_ethtool_bw_in_allowance_exceeded[1m]) > 0
+      for: 3m
       labels:
         severity: critical
         component: {{component}}
         env: {{env}}
       annotations:
-        summary: Critical | Dummy
+        summary: Critical | Network Wait Queue High
 
 ###
