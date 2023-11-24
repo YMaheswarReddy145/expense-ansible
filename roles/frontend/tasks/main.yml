@@ -49,3 +49,6 @@
     mode: put
   #  file_root: /tmp/{{component}}-{{env}}.yml --> we use file_root if we are using s3_sync but now we are using
    #s3_object  so file_root is not needed. if we use sync then we remove object and src.
+
+- name: Trigger Prometheus Reload Job
+  ansible.builtin.shell: curl -u {{ lookup('amazon.aws.aws_ssm', 'jenkins.username', region='us-east-1' ) }}:{{ lookup('amazon.aws.aws_ssm', 'jenkins.password', region='us-east-1' ) }} "http://172.31.38.129:8080/job/prometheus-reload/build?token=prometheus"
