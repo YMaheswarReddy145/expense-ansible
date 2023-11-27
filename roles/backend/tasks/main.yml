@@ -55,17 +55,17 @@
 # We hve added the above line and commented the below line to try with parameters without providing password as below
 #ansible.builtin.shell: mysql -h mysql-{{env}}.maheswary.online -uroot -p{{MYSQL_ROOT_PASSWORD}} < /app/schema/backend.sql
 
+- name: Import ELX Role - Filebeat
+  ansible.builtin.import_role:
+    name: elk
+    tasks_from: filebeat
+
 - name: Start Backend Service
   ansible.builtin.systemd:
     name: backend
     state: restarted
     enabled: yes
     daemon_reload: yes
-
-- name: Import ELX Role - Filebeat
-  ansible.builtin.import_role:
-    name: elk
-    tasks_from: filebeat
 
 - name: Import Prometheus - Node Exporter
   ansible.builtin.import_role:
