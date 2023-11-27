@@ -43,3 +43,8 @@
 
 - name: Install New Relic agent
   ansible.builtin.shell: curl -Ls https://download.newrelic.com/install/newrelic-cli/scripts/install.sh | bash && sudo NEW_RELIC_API_KEY=NRAK-57BLDGZ33LH9F67A2EZAPV56EMX NEW_RELIC_ACCOUNT_ID=4254570 /usr/local/bin/newrelic install -y -n infrastructure-agent-installer -- tag{{component}}-{{env}}
+
+- name: Install New Relic Nginx Agent
+  ansible.builtin.dnf:
+    name: nri-nginx
+    state: installed
