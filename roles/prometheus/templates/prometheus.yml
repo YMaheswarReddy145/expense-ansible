@@ -46,7 +46,6 @@ scrape_configs:
         port: 9100
 # we are proving the filter because if we don't add these it will show all the instances present in ec2, if we add the
   # filter it will show only the instance which has tag name as Monitor, we can provide the tg in ec2 .
-
         filters:
           - name: "tag:Monitor"
             values: ["true"]
