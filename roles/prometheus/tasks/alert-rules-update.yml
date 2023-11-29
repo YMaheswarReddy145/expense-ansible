@@ -1,6 +1,6 @@
 - name: Create Alert YML File
   ansible.builtin.template:
-    src: alert-rules.yml
+    src: common.yml
     dest: /tmp/{{component}}-{{env}}.yml
 
 - name: Upload Alert file to S3
